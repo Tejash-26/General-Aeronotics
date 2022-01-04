@@ -33,8 +33,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-        latitude=getIntent().getExtras().getDouble("lati");
-        longitude=getIntent().getExtras().getDouble("longi");
+        latitude=getIntent().getExtras().getDouble("lat");
+        longitude=getIntent().getExtras().getDouble("long");
     }
 
     /**

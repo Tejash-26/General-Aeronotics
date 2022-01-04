@@ -32,7 +32,7 @@ public class home_page extends AppCompatActivity {
     String id="";
     String name="";
     List<RetroUser> users;
-    List<RetroPhoto> image_models;
+    List<RetroPhoto> image;
 
 
     private CustomAdapter adapter;
@@ -50,21 +50,21 @@ public class home_page extends AppCompatActivity {
         progressDoalog.setMessage("Loading....");
         progressDoalog.show();
         users=new ArrayList<>();
-        image_models=new ArrayList<>();
+        image=new ArrayList<>();
         recyclerView=findViewById(R.id.customRecyclerview);
-        Intialize_Retrofit();
+        IntializeRetrofit();
         progressDoalog.dismiss();
 
         }
-    public void Intialize_Retrofit() {
+    public void IntializeRetrofit() {
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        GetDataService2 myapi=retrofit.create(GetDataService2.class);
+        GetDataService2 tejasapi=retrofit.create(GetDataService2.class);
 
-        Call<List<RetroUser>> call=myapi.getAllusers();
+        Call<List<RetroUser>> call=tejasapi.getAllusers();
 
         call.enqueue(new Callback<List<RetroUser>>() {
             @Override
@@ -106,12 +106,12 @@ public class home_page extends AppCompatActivity {
                 }
                 List<RetroPhoto> data2=response.body();
                 int count=0;
-                for(RetroPhoto im:data2){
+                for(RetroPhoto i2:data2){
                     if(count<10){
-                        image_models.add(im);}
+                        image.add(i2);}
                     count++;
                 }
-                intialize_userlist(users,image_models);
+                intializeuserlist(users,image);
             }
 
             @Override
@@ -121,27 +121,7 @@ public class home_page extends AppCompatActivity {
         });
     }
 
-    /*Method to generate List of data using RecyclerView with custom adapter*/
-   /* private void generateDataList(List<RetroPhoto> image_models) {
-        recyclerView = findViewById(R.id.customRecyclerView);
-        adapter = new CustomAdapter(this,image_models);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(home_page.this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
-
-    }
-    private void generateDataList2(List<RetroUser> User) {
-        recyclerView = findViewById(R.id.customRecyclerView);
-        adapter = new CustomAdapter(this,User);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(home_page.this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
-    }
-
-
-*/
-
-    private void intialize_userlist(List<RetroUser> users,List<RetroPhoto> image_models) {
+    private void intializeuserlist(List<RetroUser> users,List<RetroPhoto> image_models) {
         adapter=new CustomAdapter(users,image_models,this);
         layoutManager=new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);

@@ -21,7 +21,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 import java.util.Locale;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomHolder> {
 
     private List<RetroUser> user;
     private List<RetroPhoto> dataList;
@@ -36,7 +36,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public CustomAdapter() {
     }
 
-    public class CustomViewHolder extends RecyclerView.ViewHolder{
+    public class CustomHolder extends RecyclerView.ViewHolder{
         private ImageView image;
         private TextView name;
         private TextView address;
@@ -44,7 +44,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         private RelativeLayout singleitem;
         private TextView longitude;
         private TextView latitude;
-        public CustomViewHolder(@NonNull View itemView) {
+        public CustomHolder(@NonNull View itemView) {
             super(itemView);
 
             image=itemView.findViewById(R.id.user_image);
@@ -60,30 +60,30 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
     @Override
-    public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CustomHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(context).inflate(R.layout.layout,parent,false);
-        return new CustomViewHolder(view);
+        return new CustomHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(CustomViewHolder holder, int position) {
+    public void onBindViewHolder(CustomHolder holder, int link) {
 
 
-        String longi=user.get(position).getAddress().getGeo().getLng();
-        String lati=user.get(position).getAddress().getGeo().getLat();
-        holder.name.setText(user.get(position).getName());
-        String address=String.valueOf(user.get(position).getAddress().getStreet()+", "+user.get(position).getAddress().getSuit()+", "+
-                user.get(position).getAddress().getCity());
-        holder.id.setText(String.valueOf(user.get(position).getId()));
+        String longi=user.get(link).getAddress().getGeo().getLng();
+        String lati=user.get(link).getAddress().getGeo().getLat();
+        holder.name.setText(user.get(link).getName());
+        String address=String.valueOf(user.get(link).getAddress().getStreet()+", "+user.get(link).getAddress().getSuit()+", "+
+                user.get(link).getAddress().getCity());
+        holder.id.setText(String.valueOf(user.get(link).getId()));
         holder.address.setText(address);
-        holder.longitude.setText("Longi: "+longi);
-        holder.latitude.setText("Lati: "+lati);
+        holder.longitude.setText("Long: "+longi);
+        holder.latitude.setText("Lat: "+lati);
 
 
 
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttp3Downloader(context));
-        builder.build().load(dataList.get(position).getThumbnailUrl())
+        builder.build().load(dataList.get(link).getThumbnailUrl())
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_background)
                 .into(holder.image);
@@ -101,12 +101,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                                 intent.setPackage("com.google.android.apps.maps");
                                 context.startActivity(intent);
                             }
-                        }).setNegativeButton("Local Map", new DialogInterface.OnClickListener() {
+                        }).setNegativeButton("Inbuilt Map", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent intent=new Intent(context,MapsActivity.class);
-                        intent.putExtra("lati",Double.parseDouble(lati));
-                        intent.putExtra("longi",Double.parseDouble(longi));
+                        intent.putExtra("lat",Double.parseDouble(lati));
+                        intent.putExtra("long",Double.parseDouble(longi));
                         context.startActivity(intent);
                     }
                 });

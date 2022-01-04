@@ -9,9 +9,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
-
         android:layout_marginTop="20dp"
-        android:background="@color/white"
+        android:background="#E1D2EF"
         tools:ignore="NotSibling">
 
         <androidx.cardview.widget.CardView
@@ -59,7 +58,7 @@
             android:layout_marginTop="60dp"
             android:lineHeight="8dp"
 
-            android:text="Kulas Light Apt. 556 Gwenborough"
+            android:text="xyz"
             android:textColor="@color/black"
             android:textSize="15dp"
             android:textStyle="normal" />
@@ -71,7 +70,7 @@
             android:layout_marginLeft="150dp"
             android:layout_marginTop="105dp"
 
-            android:text="Kulas Light Apt. 556 Gwenborough"
+            android:text="some address"
             android:textColor="@color/black"
             android:textSize="10dp" />
 
@@ -82,7 +81,7 @@
             android:layout_marginLeft="150dp"
             android:layout_marginTop="120dp"
 
-            android:text="Kulas Light Apt. 556 Gwenborough"
+            android:text="some adderss"
             android:textColor="@color/black"
             android:textSize="10dp" />
 

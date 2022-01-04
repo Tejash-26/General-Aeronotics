@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:background="@drawable/custom_input"
         android:backgroundTint="#B5ECF3"
 
@@ -48,8 +48,8 @@
         android:id="@+id/customRecyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
-        android:background="@color/white"
+        android:layout_marginTop="130dp"
+        android:background="#6C6A6A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
